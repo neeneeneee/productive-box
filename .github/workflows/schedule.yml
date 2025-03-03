@@ -1,18 +1,26 @@
 name: Update gist
 on:
+  # repository_dispatch 이벤트로 외부에서 트리거 시 실행
   repository_dispatch:
     types: [build-event]
+
+  # 일정 주기로 매일 자정(UTC)에 실행되는 크론탭 설정
   schedule:
-    - cron: "0 0 * * *"
-  # Allows you to run this workflow manually from the Actions tab
+    - cron: "0 0 * * *"  # 매일 00:00 UTC 실행
+
+  # 수동으로 'Actions' 탭에서 실행할 수 있도록 워크플로우 수동 실행 허용
   workflow_dispatch:
+
 jobs:
   update-gist:
+    # 워크플로우가 실행될 운영 체제 설정
     runs-on: ubuntu-latest
+
     steps:
+      # Gist 업데이트 작업을 수행하는 단계
       - name: Update gist
-        uses: maxam2017/productive-box@master
+        uses: maxam2017/productive-box@master  # 해당 GitHub 액션 사용
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID }}
-          TIMEZONE: ${{ vars.TIMEZONE }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}   # GitHub 토큰, secrets에서 읽어옴
+          GIST_ID: ${{ secrets.GIST_ID }}     # Gist ID, secrets에서 읽어옴
+          TIMEZONE: "Asia/Seoul"              # 한국 시간대로 설정
