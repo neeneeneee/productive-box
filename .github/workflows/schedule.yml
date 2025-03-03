@@ -22,5 +22,5 @@ jobs:
         uses: maxam2017/productive-box@master  # 해당 GitHub 액션 사용
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}   # GitHub 토큰, secrets에서 읽어옴
-          GIST_ID: ${{ secrets.GIST_ID }}     # Gist ID, secrets에서 읽어옴
+          GIST_ID: 60638bf37f0b834bfbdf5c3b56b81b37
           TIMEZONE: "Asia/Seoul"              # 한국 시간대로 설정
